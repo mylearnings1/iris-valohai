@@ -15,7 +15,7 @@ def main():
     
     print('Loading data')
     iris=pd.read_csv(valohai.inputs('dataset').path())
-    iris=iris.drop('Id',axis=1,inplace=True)
+    iris.drop(columns=['Id'],axis=1)
     
     #X=iris.drop(columns=['Species'],axis=1)
     #y=iris['Species']
