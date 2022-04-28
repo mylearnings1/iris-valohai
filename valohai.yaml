@@ -28,5 +28,8 @@
       - name: train
         type: execution
         step: train-model
+        override:
+          inputs:
+            - name: dataset
     edges:
-      - [preprocess.output.iris_preprocessed.csv, train.input.iris_preprocessed.csv]
+      - [preprocess.output.iris_preprocessed.csv, train.input.dataset]
