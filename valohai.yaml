@@ -1,0 +1,20 @@
+---
+- step:
+    name: Preprocess Dataset
+    image: python:3.6
+    command:
+      - pip install -r requirements.txt
+      - python pre-processing.py
+    inputs:
+      - name: dataset
+        default: https://depprocureformstorage.blob.core.windows.net/iris-dataset/input/Iris.csv
+
+- step:
+    name: train-model
+    image: valohai/notebook:sklearn-0.24.2
+    command:
+      - pip install -r requirements.txt
+      - python ./train.py 
+    inputs:
+      - name: dataset1
+        default: 
