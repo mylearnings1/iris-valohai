@@ -18,3 +18,15 @@
     inputs:
       - name: dataset
         default: datum://01806ecf-1182-ee2a-1c45-4484c447375d
+        
+- pipeline:
+    name: Training pipeline
+    nodes:
+      - name: preprocess
+        type: execution
+        step: Preprocess dataset
+      - name: train
+        type: execution
+        step: train-model
+    edges:
+      - [preprocess.output.*.csv, train.input.iris_preprocessed.csv]
