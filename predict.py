@@ -22,7 +22,7 @@ def read_input(request):
     dt.load()
 
     # Resize image to 28x28 and convert to grayscale
-    dt = dt.drop(columns=['Id'],axis=1)
+    #dt = dt.drop(columns=['Id'],axis=1)
 
     return dt
 
