@@ -48,7 +48,7 @@ def main():
     plt.show()
     plt.close()
     model_path=valohai.outputs().path('model_dt.jbl')
-    joblib.dump(moodel,open(model_path,'wb'))
+    joblib.dump(model,open(model_path,'wb'))
     
 if __name__=='__main__':
     main()
