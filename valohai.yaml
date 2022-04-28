@@ -17,4 +17,4 @@
       - python ./train.py 
     inputs:
       - name: dataset1
-        default: datum://01806ad7-33e7-2861-7b42-6c91dff8abb8
+        default: datum://01806ecf-1182-ee2a-1c45-4484c447375d
