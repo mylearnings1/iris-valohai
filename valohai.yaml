@@ -34,3 +34,13 @@
               default: https://depprocureformstorage.blob.core.windows.net/iris-dataset/data/01G1Q/01G1QBQSKSP22HKFFA3M4GPSFN/output-13/iris_preprocessed.csv
     edges:
       - [preprocess.output.iris_preprocessed.csv, train.input.dataset]
+      
+- endpoint:
+    name: iris-predict
+    description: predict type of flower from data inputs
+    image: valohai/notebook:sklearn-0.24.2
+    wsgi: predict:mypredictor
+    files:
+        - name: model
+          description: Model output file from train.py
+          path: model_dt.jbl
