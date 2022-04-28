@@ -17,20 +17,13 @@ def main():
     iris=pd.read_csv(valohai.inputs('dataset').path())
     iris=iris.drop('Id',axis=1,inplace=True)
     
-    X=iris.drop(columns=['Species'],axis=1)
-    y=iris['Species']
+    #X=iris.drop(columns=['Species'],axis=1)
+    #y=iris['Species']
+   
+    print('Saving preprocessed data')
+    path_iris = valohai.outputs().path('iris_preprocessed.csv')
+    iris.to_csv(path_iris)
     
-    
-    print('Saving train test split data')
-    path_X_train = valohai.outputs().path('X_train.csv')
-    X_train.to_csv(path_X_train)
-    path_X_test = valohai.outputs().path('X_test.csv')
-    X_test.to_csv(path_X_test)
-    path_y_train = valohai.outputs().path('y_train.csv')
-    y_train.to_csv(path_y_train)
-    path_y_test = valohai.outputs().path('y_test.csv')
-    y_test.to_csv(path_y_test)
-    
-    
+   
 if __name__=='__main__':
     main()
