@@ -1,8 +1,12 @@
+import uuid
 import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 from sklearn.cross_validation import train_test_split
 from sklearn import metrics #for checking the model accuracy
 from sklearn.tree import DecisionTreeClassifier
+import joblib
 import valohai
     
 def main():
