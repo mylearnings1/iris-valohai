@@ -29,4 +29,4 @@
         type: execution
         step: train-model
     edges:
-      - [preprocess.output.*.csv, train.input.iris_preprocessed.csv]
+      - [preprocess.output.iris_preprocessed.csv, train.input.iris_preprocessed.csv]
