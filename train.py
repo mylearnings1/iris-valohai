@@ -37,7 +37,7 @@ def main():
     model_accuracy=metrics.accuracy_score(prediction,y_test)
     print('The accuracy of the Decision Tree is',model_accuracy)
     
-    cm= confusion_matrix(y_test,prediction)
+    cm= metrics.confusion_matrix(y_test,prediction)
     plt.rcParams['figure.figsize']=(5,5)
     sns.set(style='dark',font_scale=1.4)
     sns.heatmap(cm,annot=True,annot_kws={"size":15})
