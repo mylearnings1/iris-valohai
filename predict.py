@@ -1,38 +1,60 @@
-import json
 from werkzeug.wrappers import Request, Response
-import pandas as pd
+import io
+import numpy
 import joblib
+import json
 
-model = None
+# Location of our model
+model_path = 'model_dt.jbl'
 
-def predict(environ, start_response):
-    # Load input image data from the HTTP request
+# Store our model
+IrisModel = None
+
+def read_input(request):
+    # Ensure that we've received a file named 'image' through POST
+    # If we have a valid request proceed, otherwise return None
+    if request.method != 'POST' and 'data' not in request.files:
+        return None
+
+    # Load the image that was sent
+    dataFile = request.files.get('data')
+    dt= open(dataFile.stream)
+    dt.load()
+
+    return dt
+
+def mypredictor(environ, start_response):
+    # Get the request object from the environment
     request = Request(environ)
-    if not request.files:
-        return Response('no file uploaded', 400)(environ, start_response)
-    data_file = next(request.files.values())
-    #data = process_image(Image.open(image_file))
-    data = pd.read_csv(data_file)
 
-    # The predictor must be lazily instantiated;
-    # the TensorFlow graph can apparently not be shared
-    # between processes.
-    global model
-    if not model:
-        model = joblib.load('model_dt.jbl')
-    prediction = model.predict(data)
+    global IrisModel
+    if not IrisModel:
+        IrisModel = joblib.load(model_path)
 
-    # The following line allows Valohai to track endpoint predictions
-    # while the model is deployed. Here we remove the full predictions
-    # details as we are only interested in tracking the rest of the results.
-    #print(json.dumps({'vh_metadata': {k: v for k, v in prediction.items() if k != 'predictions'}}))
+    # Get the image file from our request
+    data1 = read_input(request)
 
-    # Return a JSON response
-    response = Response(json.dumps(prediction), content_type='application/json')
+    # If read_input didn't find a valid file
+    if (data1 is None):
+        response = Response("\nNo data", content_type='text/html')
+        return response(environ, start_response)
+
+
+    # Use our model to predict the class of the file sent over a form.
+    prediction = IrisModel.predict(data)
+
+    # Generate a JSON output with the prediction
+    json_response = json.dumps("{Predicted_Data: %s}" % prediction)
+
+    # Send a response back with the prediction
+    response = Response(json_response, content_type='application/json')
     return response(environ, start_response)
-
-
-# Run a local server for testing with `python deploy.py`
-if __name__ == '__main__':
+# When running locally
+if __name__ == "__main__":
     from werkzeug.serving import run_simple
-    run_simple('0.0.0.0', 8000, predict)
+
+    # Update model path to point to our downloaded model when testing locally
+    model_path = '.models/model_dt.jbl'
+
+    # Run a local server on port 5000.
+    run_simple("localhost", 8000, mypredictor)
