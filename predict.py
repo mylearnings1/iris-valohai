@@ -1,5 +1,6 @@
 from werkzeug.wrappers import Request, Response
 import io
+import pandas as pd
 import numpy
 import joblib
 import json
@@ -18,8 +19,7 @@ def read_input(request):
 
     # Load the image that was sent
     dataFile = request.files.get('data')
-    dt= open(dataFile.stream)
-    dt.load()
+    dt= pd.read_csv(dataFile.stream)
 
     return dt
 
