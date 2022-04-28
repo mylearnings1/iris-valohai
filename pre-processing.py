@@ -20,12 +20,6 @@ def main():
     X=iris.drop(columns=['Species'],axis=1)
     y=iris['Species']
     
-    X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=1)
-    
-    X_train = pd.DataFrame(X_train)
-    X_test=pd.DataFrame(X_test)
-    y_train = pd.DataFrame(y_train)
-    y_test=pd.DataFrame(y_test)
     
     print('Saving train test split data')
     path_X_train = valohai.outputs().path('X_train.csv')
