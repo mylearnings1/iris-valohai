@@ -24,7 +24,7 @@
     nodes:
       - name: preprocess
         type: execution
-        step: Preprocess dataset
+        step: Preprocess Dataset
       - name: train
         type: execution
         step: train-model
