@@ -47,7 +47,7 @@ def mypredictor(environ, start_response):
     prediction = IrisModel.predict(data)
 
     # Generate a JSON output with the prediction
-    json_response = json.dumps("{Predicted_Digit: %s}" % prediction[0])
+    json_response = json.dumps("{Predicted_Digit: %s}" % prediction)
 
     # Send a response back with the prediction
     response = Response(json_response, content_type='application/json')
