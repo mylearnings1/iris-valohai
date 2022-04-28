@@ -15,7 +15,7 @@ def main():
         step = 'Train-Model',
         image = 'valohai/notebook:sklearn-0.24.2',
         default_inputs={
-            'dataset':
+            'dataset': 'datum://01806ecf-1182-ee2a-1c45-4484c447375d'
         },
     )
     
