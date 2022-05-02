@@ -10,7 +10,7 @@ app = FastAPI()
 model_path = 'model_dt.jbl'
 loaded_model = None
  
-@app.post("/predict")
+@app.post("{full_path:path}")
 async def predict(data: UploadFile = File(...)):
     img = pd.read_csv(BytesIO(await data.read()))
   
