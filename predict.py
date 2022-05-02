@@ -22,4 +22,4 @@ async def predict(data: UploadFile = File(...)):
     # Predict with the model
     prediction = loaded_model.predict(img)
  
-    return f'Predicted_Digit: {prediction}'
+    return f'Predicted_Flower: {prediction}'
