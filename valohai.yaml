@@ -34,6 +34,18 @@
               default: https://depprocureformstorage.blob.core.windows.net/iris-dataset/data/01G1Q/01G1QBQSKSP22HKFFA3M4GPSFN/output-13/iris_preprocessed.csv
     edges:
       - [preprocess.output.iris_preprocessed.csv, train.input.dataset]
+
+- step:
+    name: Batch Inference
+    image: valohai/sklearn:1.0
+    command:
+    - pip install pandas valohai-utils
+    - python batch_inference.py
+    inputs:
+    - name: model
+      default: datum://018083b0-88b5-b372-d915-16302d0c6fe6
+    - name: images
+      default: datum://01808486-678b-bd24-c376-e763e0274d72
       
 - endpoint:
     name: iris-predict
