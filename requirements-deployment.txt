@@ -1,5 +1,5 @@
 valohai-utils
-sklearn==0.24.2
+scikit-learn==0.24.2
 Pillow
 python-multipart
 fastapi
