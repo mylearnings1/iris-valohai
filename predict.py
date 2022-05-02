@@ -3,17 +3,17 @@ import sklearn
 import pandas as pd
 import numpy
 import joblib
-import io
+from io import BytesIO
  
 app = FastAPI()
  
 model_path = 'model_dt.jbl'
 loaded_model = None
  
-@app.post("{full_path:path}")
+@app.post("/predict")
 async def predict(data: UploadFile = File(...)):
-    img = await pd.read_csv(data.file)
- 
+    img = pd.read_csv(BytesIO(await data.read()))
+  
     # Resize image and convert to grayscale
     #img = img.resize((28, 28)).convert('L')
     #img_array = numpy.array(img)
