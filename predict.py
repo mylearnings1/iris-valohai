@@ -1,5 +1,4 @@
 from fastapi import FastAPI, File, UploadFile
-import sklearn
 import pandas as pd
 import numpy
 import joblib
@@ -13,13 +12,7 @@ loaded_model = None
 @app.post("{full_path:path}")
 async def predict(data: UploadFile = File(...)):
     img = pd.read_csv(BytesIO(await data.read()))
-  
-    # Resize image and convert to grayscale
-    #img = img.resize((28, 28)).convert('L')
-    #img_array = numpy.array(img)
- 
-    #image_data = numpy.reshape(img_array, (1, 28, 28))
- 
+
     global loaded_model
     # Check if model is already loaded
  
