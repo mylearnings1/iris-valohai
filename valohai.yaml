@@ -44,8 +44,7 @@
 - endpoint:
     name: iris-predict
     description: predict type of flower from data inputs
-    image: valohai/notebook:sklearn-0.24.2
-    wsgi: predict:mypredictor
+    image: python:3.6
     files:
         - name: model
           description: Model output file from train.py
