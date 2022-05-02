@@ -12,7 +12,7 @@ loaded_model = None
  
 @app.post("{full_path:path}")
 async def predict(data: UploadFile = File(...)):
-    img = await pd.read_csv(data)
+    img = await pd.read_csv(data.file)
  
     # Resize image and convert to grayscale
     #img = img.resize((28, 28)).convert('L')
