@@ -4,5 +4,5 @@ pandas==1.1.5
 numpy==1.19.5
 Pillow
 python-multipart
-fastapi
+fastapi[all]
 joblib==1.1.0
