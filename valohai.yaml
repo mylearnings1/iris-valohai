@@ -17,7 +17,7 @@
       - python ./train.py 
     inputs:
       - name: dataset
-        default: https://depprocureformstorage.blob.core.windows.net/iris-dataset/data/01G1Q/01G1QBQSKSP22HKFFA3M4GPSFN/output-13/iris_preprocessed.csv
+        default: azure://depprocureformstorage/iris-dataset/data/01G1Q/01G1QBQSKSP22HKFFA3M4GPSFN/output-14/iris_preprocessed.csv
         
 - pipeline:
     name: Training pipeline
