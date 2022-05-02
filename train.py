@@ -15,7 +15,7 @@ def main():
         step = 'Train-Model',
         image = 'valohai/sklearn:0.24.2',
         default_inputs={
-            'dataset': 'https://depprocureformstorage.blob.core.windows.net/iris-dataset/data/01G1Q/01G1QBQSKSP22HKFFA3M4GPSFN/output-13/iris_preprocessed.csv'
+            'dataset': 'azure://depprocureformstorage/iris-dataset/data/01G1Q/01G1QBQSKSP22HKFFA3M4GPSFN/output-14/iris_preprocessed.csv'
         },
     )
     
